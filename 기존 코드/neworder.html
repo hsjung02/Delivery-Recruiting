@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>포스텍 배달팟 모으기</title>
+        <link type="text/css" rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header' onClick="location.href='/'">포스텍 배달팟 모으기</div>
+            <div class='midbox'>
+                <menu>
+                    <h2>MENU</h2>
+                    <div class='menu' onClick="location.href='/'">모집중인 주문</div>
+                    <div class='menu' onClick="location.href='/neworder'">새 주문 만들기</div>
+                    <div class='menu' onClick="location.href='/page'">마이페이지</div>
+                    <div class='menu' onClick="location.href='/out'">로그아웃</div>
+                </menu>
+                <board>
+                    <form method="POST" action="/neworder">
+                        <div class='title'>새 주문 만들기</div>
+                        <div class='loginform'>
+                            <label><input type="text" placeholder='주문 제목(최대 15자)' name = "name"/></label>
+                            <label><input type="text" placeholder='최소 금액' name="totalprice"/></label>
+                            <label><input type="text" placeholder='내 주문' name="product"/></label>
+                            <label><input type="text" placeholder='내 금액' name="price"/></label>
+                            <input type ="submit" value='생성'/>
+                        </div>
+                        
+                    </form>
+                </board>
+            </div>
+            <div class='footer'>
+                    COPYRIGHT hsjung02. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </body>
+</html>

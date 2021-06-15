@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>포스텍 배달팟 모으기</title>
+        <link type="text/css" rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header' onClick="location.href='/'">포스텍 배달팟 모으기</div>
+            <div class='midbox'>
+                <menu>
+                    <h2>MENU</h2>
+                    <div class='menu' onClick="location.href='/'">모집중인 주문</div>
+                    <div class='menu' onClick="location.href='/login'">로그인</div>
+                    <div class='menu' onClick="location.href='/join'">회원가입</div>
+                </menu>
+                <board>
+                        <form method="POST" action="/join">
+                            <div class='title'>회원가입</div>
+                            <div class='loginform'>
+                                <label><input type="text" placeholder='ID(전화번호)' name = "tel"/></label>
+                                <label><input type="password" placeholder='PW' name="pw"/></label>
+                                <input type ="submit" value='회원가입'/>
+                            </div>
+                        </form>
+                </board>
+            </div>
+            <div class='footer'>
+                    COPYRIGHT hsjung02. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </body>
+</html>
