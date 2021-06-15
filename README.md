@@ -11,9 +11,20 @@
 - 성치호: MO
 
 ## 2. 리포지토리 구조
- ### 2.1 코드
+ ### 2.1 브랜치
+ #### 2.1.1 메인 브랜치
+ - 파일: README.md , LICENSE , 기획서.pdf
+ - 폴더:
+   - React
+   - Nodejs
+   - Flutter
+ #### 2.1.2 FE1 브랜치
+ #### 2.1.3 FE2 브랜치
+ #### 2.1.4 BE 브랜치
+ - 폴더:
+   
+ #### 2.1.5 MO 브랜치
  ### 2.2 이슈
- ### 2.3 브랜치
 
 ## 3. 작업 방식
 이슈 템플릿에 해결해야 하는 과제들이 있습니다. 각 과제들을 해결하고, 메인 브랜치에 커밋하시면 됩니다.
@@ -21,3 +32,9 @@
 
 ## 4. 기타
 깃과 깃헙 사용이 익숙하지 않으시다면, [생활코딩님의 강좌](https://opentutorials.org/course/2708)나 [첨부한](https://victorydntmd.tistory.com/91) [링크](https://lcw126.tistory.com/206)를 참고해주세요.
+
+## 5. Members
+- 정현서 | [hsjung02@Github](http://github.com/hsjung02)
+- 김남건
+- 성치호
+- 신동훈
