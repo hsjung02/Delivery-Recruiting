@@ -12,16 +12,13 @@ const router = express.Router();
 module.exports = router;
 
 
-// router.use('/',(req,res,next)=>{
-//     res.clearCookie('tel');
-//     next();
-// })
 
 
-router.get('/',(req,res)=>{
+
+router.get('/',(req,res)=>{ //로그아웃 버튼을 눌러서 /logout 페이지로 이동했을 때
     try {
-        res.clearCookie('tel');   
-        res.redirect(302,'/');
+        res.clearCookie('tel');   //쿠키 초기화
+        res.redirect(302,'/');    //메인 화면으로 리다이렉트
     } catch(err){
         console.log(err);
     }
@@ -29,8 +26,6 @@ router.get('/',(req,res)=>{
 
 
 
-//1. 쿠키 만료 시간을 설정해서 없애기
-//2. cookie parser 이용
 
 
 

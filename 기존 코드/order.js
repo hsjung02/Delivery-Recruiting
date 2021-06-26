@@ -13,12 +13,12 @@ module.exports = router;
 
 
 
-router.get('/:ordername',(req,res)=>{
-    if(Object.keys(req.cookies).length == 0){
-        res.redirect(302,'/login');
+router.get('/:ordername',(req,res)=>{ // url이 /order/ordername 으로 넘어왔음
+    if(Object.keys(req.cookies).length == 0){ // 로그인 안되어있다면
+        res.redirect(302,'/login'); // 로그인 화면으로 리다이렉트
     }
     else{
-        header = fs.readFileSync("./user_header.html","utf8");
+        header = fs.readFileSync("./user_header.html","utf8"); // 회원 전용 헤더파일
         res.write(header);
         var ordername=req.params.ordername;
         var temp='';
@@ -28,19 +28,26 @@ router.get('/:ordername',(req,res)=>{
                 temp+=`<div class='title'>${ordername}</div>`;
                 var totalprice=0;
                 var min_price=result[0].price;
-                for(var key in result){
+                for(var key in result){ // 현재 채워진 금액
                     if(key!=0)totalprice+=parseInt(result[key].price);
                 }
                 temp+=`<h3>현재금액:${totalprice}/${min_price}</h3>`;
-                temp+=`<form method="POST" action="/order/${ordername}"><div class='loginform'><label><input type="text" placeholder="음식" name = "product"'></label>
-            <label><input type="text" placeholder="금액" name="price"'></label>
-            <input type ="submit" value='신청'/></div></form>`
-                if(result[0].tel == req.cookies.tel)temp+=`<input type='submit' value='주문 마감' onClick="location.href='/order/end/${ordername}'"></input>`;
+                temp+=
+                `<form method="POST" action="/order/${ordername}">
+                    <div class='loginform'>
+                        <label><input type="text" placeholder="음식" name = "product"'></label>
+                        <label><input type="text" placeholder="금액" name="price"'></label>
+                        <input type ="submit" value='신청'/>
+                    </div>
+                </form>`
+                if(result[0].tel == req.cookies.tel){ // 주문 생성자이면 주문 마감 버튼 추가
+                    temp+=`<input type='submit' value='주문 마감' onClick="location.href='/order/end/${ordername}'"></input>`;
+                }
                 res.write(temp);
                 resolve();
             })
         }).then(()=>{
-            var footer = fs.readFileSync("./footer.html", "utf8");
+            var footer = fs.readFileSync("./footer.html", "utf8"); //풋터파일
             res.write(footer);
             res.end();
         })
