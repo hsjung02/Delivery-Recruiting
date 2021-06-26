@@ -55,7 +55,7 @@ router.get('/:ordername',(req,res)=>{ // url이 /order/ordername 으로 넘어�
 })
 
 
-router.post('/:ordername',(req,res)=>{
+router.post('/:ordername',(req,res)=>{ //누군가가 주문 신청을 했을 때. 프론트 부분은 없습니다
     var ordername=req.params.ordername;
     db.query(`INSERT INTO ${ordername} (tel,product,price) VALUES ('${req.cookies.tel}', '${req.body.product}','${req.body.price}')`,(err,result)=>{
         if(err)throw err;
@@ -63,7 +63,7 @@ router.post('/:ordername',(req,res)=>{
     })
 })
 
-router.get('/end/:ordername',(req,res)=>{
+router.get('/end/:ordername',(req,res)=>{ //호스트가 주문 마감하면, 신청자들의 정보를 표에 보여줌. 전화번호, 메뉴, 가격을 표로 보여줌
     var ordername = req.params.ordername;
     var header = fs.readFileSync("./user_header.html","utf8");
     var totalprice=0;
@@ -91,7 +91,7 @@ router.get('/end/:ordername',(req,res)=>{
     })
 })
 
-router.post('/end/:ordername',(req,res)=>{
+router.post('/end/:ordername',(req,res)=>{ // 주문 마감 후 데이터베이스에서 삭제. 프론트 부분 없습니다.
     new Promise((resolve,reject)=>{
         db.query(`DROP TABLE ${req.params.ordername}`,(err,result)=>{
             if(err)throw err;
