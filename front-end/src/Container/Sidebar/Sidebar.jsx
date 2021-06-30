@@ -3,6 +3,22 @@ import React from "react";
 import SidebarMenuButton from "../../UI/SidebarMenuButton/SidebarMenuButton";
 
 const Sidebar = React.forwardRef((props, ref) => {
+  const openLoginPage = event => {
+    window.location.href = "/Login";
+  };
+
+  const openJoinPage = event => {
+    window.location.href = "/Join";
+  };
+
+  const openOrdersPage = event => {
+    window.location.href = "/Orders";
+  };
+
+  const openMyOrdersPage = event => {
+    window.location.href = "/MyOrders";
+  };
+
   return (
     <aside className={classes["sidebar"]} ref={ref}>
       <header className={classes["sidebar-header"]}>
@@ -13,16 +29,16 @@ const Sidebar = React.forwardRef((props, ref) => {
       </header>
       <ul className={classes["sidebar-menu"]}>
         <li>
-          <SidebarMenuButton title="로그인" />
+          <SidebarMenuButton title="로그인" onClick={openLoginPage} />
         </li>
         <li>
-          <SidebarMenuButton title="회원가입" />
+          <SidebarMenuButton title="회원가입" onClick={openJoinPage} />
         </li>
         <li>
-          <SidebarMenuButton title="모집중인 주문" />
+          <SidebarMenuButton title="모집중인 주문" onClick={openOrdersPage} />
         </li>
         <li>
-          <SidebarMenuButton title="내 주문" />
+          <SidebarMenuButton title="내 주문" onClick={openMyOrdersPage} />
         </li>
       </ul>
     </aside>

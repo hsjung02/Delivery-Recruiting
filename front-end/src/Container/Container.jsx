@@ -20,7 +20,10 @@ function Container(props) {
         <SidebarOpenButton onClick={openSidebar} />
         <h2>Delivery Recruiting</h2>
       </header>
-      <Sidebar ref={sidebarRef} onClose={closeSidebar} />
+      <div className={classes.contents}>
+        <Sidebar ref={sidebarRef} onClose={closeSidebar} />
+        <main className={classes["main-contents"]}>{props.children}</main>
+      </div>
     </div>
   );
 }
