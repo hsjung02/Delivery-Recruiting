@@ -3,6 +3,8 @@
     width: 100vw;
     height: 100vh;
     color: white;
+    overflow: hidden;
+    position: relative;
 }
 
 .header {
@@ -10,14 +12,19 @@
     justify-content: center;
     align-items: center;
     height: 60px;
-    border-bottom: 1px solid #fff;
+    border-bottom: 2px solid #fff;
     position: relative;
 }
 
 @media screen and (min-width: 992px) {
     .container {
         width: 920px;
-        height: 800px;
         margin: 0 auto;
+    }
+    .sidebar {
+        width: 30%;
+    }
+    .close-button {
+        display: none;
     }
 }

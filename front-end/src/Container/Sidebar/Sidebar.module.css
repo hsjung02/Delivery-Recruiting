@@ -1,0 +1,46 @@
+.sidebar {
+    width: 100vw;
+    height: 100vh;
+    background-color: inherit;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: left 1s;
+    border-right: 1px solid gray;
+}
+
+.sidebar-header {
+    display: flex;
+    border-bottom: 1px solid #fff;
+    position: relative;
+}
+
+.close-button {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+}
+
+.sidebar-title {
+    padding: 20px 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+@media screen and (min-width: 992px) {
+    .sidebar {
+        position: static;
+        width: 30%;
+    }
+    .close-button {
+        display: none;
+    }
+}

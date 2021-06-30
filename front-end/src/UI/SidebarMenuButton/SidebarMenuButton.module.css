@@ -1,0 +1,13 @@
+.sidebar-menu-button {
+    display: block;
+    width: 100%;
+    padding: 15px 5px;
+    color: white;
+    font-size: 15px;
+    border-bottom: 1px solid gray;
+    transition: background-color 1s;
+}
+
+.sidebar-menu-button:hover {
+    background-color: hotpink;
+}
