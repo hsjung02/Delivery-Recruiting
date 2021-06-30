@@ -1,0 +1,23 @@
+.container {
+    background-color: #343434;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid #fff;
+    position: relative;
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        width: 920px;
+        height: 800px;
+        margin: 0 auto;
+    }
+}

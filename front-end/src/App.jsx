@@ -1,5 +1,8 @@
+import Container from "./Container/Container";
+import "./App.css";
+
 function App() {
-  return <div></div>;
+  return <Container></Container>;
 }
 
 export default App;
