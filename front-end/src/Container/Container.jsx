@@ -14,11 +14,15 @@ function Container(props) {
     sidebarRef.current.style.left = "-100%";
   };
 
+  const openHomepage= ()=> {
+      window.location.href ="/"
+  }
+
   return (
     <div className={classes.container}>
       <header className={classes.header}>
         <SidebarOpenButton onClick={openSidebar} />
-        <h2>Delivery Recruiting</h2>
+        <h2 onClick={openHomepage}>Delivery Recruiting</h2>
       </header>
       <div className={classes.contents}>
         <Sidebar ref={sidebarRef} onClose={closeSidebar} />

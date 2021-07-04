@@ -1,5 +1,11 @@
+import './home.css'
+
 function Home(props) {
-  return <h2>Home</h2>;
+  return(
+      <div className="home">
+
+      </div>
+  );
 }
 
 export default Home;

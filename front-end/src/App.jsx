@@ -6,6 +6,8 @@ import Login from "./Pages/Login/Login";
 import MyOrders from "./Pages/MyOrders/MyOrders";
 import Orders from "./Pages/Orders/Orders";
 import Join from "./Pages/Join/Join";
+import MakeOrder from "./Pages/MakeOrder/MakeOrder";
+
 
 function App() {
   return (
@@ -26,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/Orders">
             <Orders />
+          </Route>
+          <Route exact path="/MakeOrder">
+            <MakeOrder />
           </Route>
         </Switch>
       </Router>

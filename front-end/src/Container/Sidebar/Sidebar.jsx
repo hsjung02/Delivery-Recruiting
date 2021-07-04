@@ -19,6 +19,10 @@ const Sidebar = React.forwardRef((props, ref) => {
     window.location.href = "/MyOrders";
   };
 
+  const openMakeOrderPage = event => {
+    window.location.href = "/MakeOrder";
+  };
+
   return (
     <aside className={classes["sidebar"]} ref={ref}>
       <header className={classes["sidebar-header"]}>
@@ -36,6 +40,9 @@ const Sidebar = React.forwardRef((props, ref) => {
         </li>
         <li>
           <SidebarMenuButton title="모집중인 주문" onClick={openOrdersPage} />
+        </li>
+        <li>
+          <SidebarMenuButton title="주문 생성" onClick={openMakeOrderPage} />
         </li>
         <li>
           <SidebarMenuButton title="내 주문" onClick={openMyOrdersPage} />
