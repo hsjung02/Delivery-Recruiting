@@ -16,6 +16,10 @@
     position: relative;
 }
 
+.header-title {
+    margin: 0;
+}
+
 .contents {
     display: flex;
     width: 100%;
