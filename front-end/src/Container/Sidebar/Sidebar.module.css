@@ -7,6 +7,7 @@
     left: -100%;
     transition: left 1s;
     border-right: 1px solid gray;
+    z-index: 1;
 }
 
 .sidebar-header {
