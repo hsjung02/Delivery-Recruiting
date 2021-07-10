@@ -9,9 +9,16 @@ const db = mysql.createConnection({
 });
 const app = express();
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const port =process.env.PORT || 3001;
 
+
+//==============================//
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(bodyParser.json());
+
 app.use(express.json());
 const cookieParser = require('cookie-parser'); //로그인 기능을 위한 cookieParser 라이브러리
 app.use(express.json());
@@ -29,8 +36,11 @@ app.use('/order',orderRouter); // url이 /order로 끝나면 주문 페이지로
 const neworderRouter = require('./routes/neworder.js'); //neworder 라우터
 app.use('/neworder',neworderRouter); // url이 /neworder로 끝나면 주문 페이지로 이동(새로운 주문 생성)
 const mypageRouter = require('./routes/mypage.js'); //mypage 라우터
-app.use('/page',mypageRouter); // url이 /mypage로 끝나면 마이페이지로 이동
+app.use('/mypage',mypageRouter); // url이 /mypage로 끝나면 마이페이지로 이동
 //====================모듈 export 끝==============//
+
+
+
 
 
 app.get('/', (req, res)=>{
@@ -40,22 +50,24 @@ app.get('/', (req, res)=>{
         logined=false;
     }
     var order=[];
-    new Promise((resolve,reject)=>{
-        db.query(`SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA='delivery' AND TABLE_NAME!='users'`,(err,result)=>{
-            if(err)throw(err);
-            for(var key in result){
-                console.log(result[key].TABLE_NAME);
-                order.push(result[key].TABLE_NAME);
-            }
-            resolve();
-        })
-    }).then(()=>{
-        res.json({logined:logined});
-    })
+
+    res.send({logined:true, order:['hi']});
+    // new Promise((resolve,reject)=>{
+    //     db.query(`SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA='delivery' AND TABLE_NAME!='users'`,(err,result)=>{
+    //         if(err)throw(err);
+    //         for(var key in result){
+    //             console.log(result[key].TABLE_NAME);
+    //             order.push(result[key].TABLE_NAME);
+    //         }
+    //         resolve();
+    //     })
+    // }).then(()=>{
+    //     res.send({logined:true,order:order});
+    // })
 });
 
 
 
 app.listen(port, ()=>{
     console.log(`server running on port ${port}`);
-})
+})//
