@@ -1,17 +1,9 @@
 const express = require('express');
 const mysql = require('mysql');
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'hyunseo02',
-    database: 'delivery',
-    multipleStatements: true
-});
-const fs = require('fs');
+const db = require('../dbconnection.js');
 const cookieParser = require('cookie-parser');
 const router = express.Router();
 module.exports = router;
-
 
 router.get('/',(req,res)=>{
     var allorder;
@@ -57,28 +49,8 @@ router.get('/',(req,res)=>{
                 }
                 resolve();
             })
-        }).then(()=>{ //여기부터 프론트입니다
-            var header=fs.readFileSync("./user_header.html","utf8"); //헤더파일
-            res.write(header);
-            var temp = `<div class='title'>${req.cookies.tel}님</div>` // '전화번호'님 이 상단에 표시
-            temp+=`<div class='title2'>내가 생성한 주문</div>`;
-            temp+=`<div class='orderbox'>`;
-            myorderlist.forEach((ordername, index, array)=>{ //myorderlist에 있는 주문들을 나열, 클릭하면 해당 주문으로 이동
-                temp+=`<ul><input type='submit' value='${ordername}' onClick="location.href='/order/${ordername}'"></input></ul>`;
-            })
-            temp+=`</div>`;
-            temp+=`<div class='title2'>내가 신청한 주문</div>`
-            temp+=`<div class='orderbox'>`;
-            orderlist.forEach((ordername, index, array)=>{ //orderlist에 있는 주문들을 나열, 클릭하면 해당 주문으로 이동
-                temp+=`<ul><input type='submit' value='${ordername}' onClick="location.href='/order/${ordername}'"></input></ul>`;
-            })
-            temp+=`</div>`;
-            res.write(temp);
-            var footer = fs.readFileSync("./footer.html", "utf8"); //풋터파일
-            res.write(footer);
-            res.end();
+        }).then(()=>{
+            res.json({myorderlist:myorderlist, orderlist:orderlist});
         })
     })
 })
-
-
