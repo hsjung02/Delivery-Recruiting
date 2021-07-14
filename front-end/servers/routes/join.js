@@ -11,11 +11,11 @@ router.post('/', (req, res) => {
 
     var check = 1;
     if (state == 0) {
-        new Promise((reject, resolve) => {
+        new Promise((resolve, reject) => {
             db.query(`SELECT tel FROM users`, (err, result) => {
                 if (err) throw err;
-                for (var key in result) {
-                    if (result[key].tel == req.body.tel) {
+                for (var key of result) {
+                    if (key.tel === req.body.tel) {
                         check = 2;
                     }
                 }
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
             })
         }).then(() => {
             if (check == 1) {
-                new Promise((reject, resolve) => {
+                new Promise((resolve, reject) => {
                     db.query(`INSERT INTO users (tel, pw) VALUES ('${req.body.tel}','${req.body.pw}')`, (err, result) => { // 회원정보 생성
                         if (err) throw err;
                         resolve();
@@ -34,6 +34,9 @@ router.post('/', (req, res) => {
             } else {
                 res.json({ state: check });
             }
+        }).catch(err => {
+            console.log('error: ');
+            console.log(err);
         })
     } else if (state == 3) {
         new Promise((resolve, reject) => {
