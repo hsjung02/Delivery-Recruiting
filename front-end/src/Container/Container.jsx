@@ -1,10 +1,12 @@
 import classes from "./Container.module.css";
 import SidebarOpenButton from "../UI/SidebarOpenButton/SidebarOpenButton";
 import Sidebar from "./Sidebar/Sidebar";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import UserContext from "../UserContext/UserContext";
 
 function Container(props) {
   const sidebarRef = useRef();
+  const userContext = useContext(UserContext);
 
   const openSidebar = () => {
     sidebarRef.current.style.left = "0";
@@ -15,7 +17,7 @@ function Container(props) {
   };
 
   const openHomepage = () => {
-    window.location.href = "/";
+    userContext.changePage("Home");
   };
 
   return (

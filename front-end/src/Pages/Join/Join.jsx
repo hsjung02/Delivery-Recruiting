@@ -1,14 +1,16 @@
 import "./join.css";
 import { Button, Form } from "semantic-ui-react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import LoadingScreen from "../../UI/LoadingScreen/LoadingScreen";
 import useLoginInput from "../../hooks/useLoginInput";
+import UserContext from "../../UserContext/UserContext";
 
 function Join(props) {
   const [telRef, passwordRef, passwordConfirmRef, checkValidity] =
     useLoginInput();
   const [isLoading, setIsLoading] = useState(false);
+  const userContext = useContext(UserContext);
 
   const postJoinData = async (tel, pw, joinstate) =>
     axios.post(
@@ -38,7 +40,7 @@ function Join(props) {
       const result = response.data.state;
       if (result === 1) {
         alert("회원가입이 완료되었습니다!");
-        window.location.href = "/login";
+        userContext.changePage("Login");
         return;
       }
 
@@ -58,7 +60,7 @@ function Join(props) {
       if (joinstate === 3) alert("새로운 계정이 생성되었습니다!");
       else alert(`기존 계정의 비밀번호는 ${response.data.pw} 입니다.`);
 
-      window.location.href = "/login";
+      userContext.changePage("Login");
     } catch (err) {
       alert(err.message);
     }

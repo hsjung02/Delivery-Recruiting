@@ -16,15 +16,15 @@ const Sidebar = React.forwardRef((props, ref) => {
   };
 
   const openOrdersPage = event => {
-    userContext.changePage(userContext.loggedIn ? "/Orders" : "/Login");
+    userContext.changePage(userContext.loggedIn ? "Orders" : "Login");
   };
 
   const openMyOrdersPage = event => {
-    userContext.changePage(userContext.loggedIn ? "/MyOrders" : "/Login");
+    userContext.changePage(userContext.loggedIn ? "MyOrders" : "Login");
   };
 
   const openMakeOrderPage = event => {
-    userContext.changePage(userContext.loggedIn ? "/MakeOrder" : "/Login");
+    userContext.changePage(userContext.loggedIn ? "MakeOrder" : "Login");
   };
 
   const alertAndLogout = () => {
