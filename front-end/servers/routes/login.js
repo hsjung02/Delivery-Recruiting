@@ -17,25 +17,28 @@ module.exports = router;
 //         })
 //     }).then(()=>{
 //         if(loginsuccess==true){
-            
+
 //             res.cookie("tel",req.body.tel);
 //         }
 //         next();
 //     })
-    
+
 // })
 
-router.post('/',(req,res)=>{
-    var loginsuccess=false;
-    new Promise((resolve,reject)=>{
-        db.query(`SELECT * FROM users`,(err,result)=>{
-            if(err)throw err;
-            for(var key in result){
-                if(result[key].tel==req.body.tel && result[key].pw==req.body.pw)loginsuccess=true;
+router.post('/', (req, res) => {
+    var loginsuccess = false;
+    new Promise((resolve, reject) => {
+        db.query(`SELECT * FROM users`, (err, result) => {
+            if (err) throw err;
+            for (var key of result) {
+                console.log(key);
+                if (key.tel == req.body.tel && key.pw == req.body.pw) loginsuccess = true;
             }
             resolve();
         })
-    }).then(()=>{
-        res.send({loginsuccess:loginsuccess});
-    })
+    }).then(() => {
+        res.send({ loginsuccess: loginsuccess })
+    }).catch(err => {
+        console.log(err);
+    });
 })

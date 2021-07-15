@@ -32,10 +32,10 @@ function useLoginInput() {
         submittable = notValidAlert(!tel.length, telMessage1, submittable);
         submittable = notValidAlert(tel.length > 0 && !telValidator(tel), telMessage2, submittable);
 
-        submittable = notValidAlert(!password.length, pwMessage1);
-        if (passwordConfirmRef.current)
+        submittable = notValidAlert(!password.length, pwMessage1, submittable);
+        if (passwordConfirmRef.current) {
             submittable = notValidAlert(password !== passwordConfirmRef.current.value, pwMessage2, submittable);
-
+        }
         return submittable;
     };
 

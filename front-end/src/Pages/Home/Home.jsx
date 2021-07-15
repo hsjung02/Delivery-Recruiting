@@ -1,10 +1,14 @@
-import './home.css'
+import { useContext } from "react";
+import UserContext from "../../UserContext/UserContext";
+import "./home.css";
 
 function Home(props) {
-  return(
-      <div className="home">
+  const userContext = useContext(UserContext);
 
-      </div>
+  return (
+    <div className="home">
+      {userContext.loggedIn && <p>{userContext.tel}님 환영합니다!</p>}
+    </div>
   );
 }
 
