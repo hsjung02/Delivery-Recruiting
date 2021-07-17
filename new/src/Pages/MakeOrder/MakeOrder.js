@@ -1,11 +1,55 @@
 import './makeorder.css'
 import {Component} from "react";
 import {Button, Form} from "semantic-ui-react";
+import axios from "axios";
 
 class MakeOrder extends Component{
     constructor(props) {
         super(props);
+        this.state={
+            name: "",
+            totalprice: "",
+            product: "",
+            price: ""
+        }
     }
+
+    updateName=(e)=>{
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+    updateTotalPrice=(e)=>{
+        this.setState({
+            totalprice: e.target.value
+        })
+    }
+
+    updateProduct=(e)=>{
+        this.setState({
+            product: e.target.value
+        })
+    }
+
+    updatePrice=(e)=>{
+        this.setState({
+            price: e.target.value
+        })
+    }
+
+    sendData=async()=>{
+        await axios.post("/neworder",
+            {
+                name: this.state.name,
+                totalprice: this.state.totalprice,
+                product: this.state.product,
+                price: this.state.price
+            }
+            )
+
+    }
+
     render(){
         return(
             <Form style={{
@@ -13,22 +57,36 @@ class MakeOrder extends Component{
                 margin: '50px auto'
             }}>
                 <Form.Field>
-                    <label style={{color: 'white'}}>가게명</label>
-                    <input placeholder='Store' />
+                    <label style={{color: 'white'}}>생성 주문 이름</label>
+                    <input placeholder='주문할 가게명 등으로 주문이름을 만들어주세요'
+                           value={this.state.name}
+                           onChange={this.updateName}
+                    />
                 </Form.Field>
                 <Form.Field>
-                    <label style={{color: 'white'}}>최대 인원</label>
-                    <input placeholder='Maximum' />
+                    <label style={{color: 'white'}}>최소 주문가격</label>
+                    <input placeholder='배달 하는데 필요한 최소 가격'
+                           value={this.state.totalprice}
+                           onChange={this.updateTotalPrice}
+                    />
                 </Form.Field>
                 <Form.Field>
-                    <label style={{color: 'white'}}>마감 시각</label>
-                    <input placeholder='Endtime' />
+                    <label style={{color: 'white'}}>주문 메뉴</label>
+                    <input placeholder='주문할 메뉴'
+                           value={this.state.product}
+                           onChange={this.updateProduct}
+                    />
                 </Form.Field>
                 <Form.Field>
-                    <label style={{color: 'white'}}>연락처</label>
-                    <input placeholder='Contact' />
+                    <label style={{color: 'white'}}>가격</label>
+                    <input placeholder='주문할 메뉴의 가격'
+                           value={this.state.price}
+                           onChange={this.updatePrice}
+                    />
                 </Form.Field>
-                <Button type='submit'>Submit</Button>
+                <Button
+                    onClick={this.sendData}
+                >Submit</Button>
             </Form>
         )
     }
