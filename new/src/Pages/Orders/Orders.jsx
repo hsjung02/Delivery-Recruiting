@@ -1,13 +1,26 @@
 import './orders.css'
 import {Component} from "react";
 import {Message} from "semantic-ui-react";
+import axios from "axios";
 
 class Orders extends Component {
   constructor(props) {
     super(props);
     this.state={
-      OrderList: [{shop: "훈이네", due:"2021년 7월 1일 12시 00분", num: 2, Max: 8 }] //추후 api로 받아들일 예정
+      OrderList: []
     }
+  }
+
+  getData=async()=>{
+    const res = await axios.get("/")
+    console.log(res)
+    this.setState({
+      OrderList: res.data
+    })
+  }
+
+  componentDidMount() {
+    this.getData()
   }
 
   render(){
@@ -17,9 +30,7 @@ class Orders extends Component {
           {myList.map(item=>{
             return(
                 <Message>
-                  <Message.Header>{item.shop}</Message.Header>
-                  주문 마감: {item.due}<br/>
-                  참여 인원: {item.num}/{item.Max}<br/>
+                  주문명 : {item}<br/>
                 </Message>
             )
           })}
