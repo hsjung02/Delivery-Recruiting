@@ -39,7 +39,7 @@ class MakeOrder extends Component{
     }
 
     sendData=async()=>{
-        await axios.post("/neworder",
+        await axios.post("http://localhost:3001/neworder",
             {
                 name: this.state.name,
                 totalprice: this.state.totalprice,

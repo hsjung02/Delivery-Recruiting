@@ -12,7 +12,7 @@ class Orders extends Component {
   }
 
   getData=async()=>{
-    const res = await axios.get("/")
+    const res = await axios.get("http://localhost:3001/")
     console.log(res)
     this.setState({
       OrderList: res.data
