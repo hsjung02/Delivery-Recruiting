@@ -1,12 +1,12 @@
 import {Component} from "react";
-import {Button, Form, Input, Message} from "semantic-ui-react";
+import {Button, Form,  Message} from "semantic-ui-react";
 import axios from "axios";
 
 
 class AddPerson extends Component{
     constructor(props) {
         super(props);
-        this.ordername = this.props.match(name)
+        this.ordername = this.props.match.name
         this.orderUrl = "http://localhost:3001/order/"+this.ordername
         this.state={
             productName: "",

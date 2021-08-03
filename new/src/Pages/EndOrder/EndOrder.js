@@ -1,6 +1,6 @@
 import {Component} from "react";
 import axios from "axios";
-import {Message} from "semantic-ui-react";
+import {Button, Message} from "semantic-ui-react";
 
 
 class EndOrder extends Component{
