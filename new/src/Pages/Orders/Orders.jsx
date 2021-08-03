@@ -13,14 +13,17 @@ class Orders extends Component {
 
   getData=async()=>{
     const res = await axios.get("http://localhost:3001/")
-    console.log(res)
     this.setState({
-      OrderList: res.data
+      OrderList: res.data.OrderList
     })
   }
 
   componentDidMount() {
     this.getData()
+  }
+
+  makeLinkUrl=(title)=>{
+    return "http://localhost:3001/Order/"+title
   }
 
   render(){
@@ -29,9 +32,11 @@ class Orders extends Component {
         <div className="order">
           {myList.map(item=>{
             return(
-                <Message>
-                  주문명 : {item}<br/>
-                </Message>
+                <a href={this.makeLinkUrl(item)}>
+                  <Message>
+                    주문명 : {item}<br/>
+                  </Message>
+                </a>
             )
           })}
         </div>
