@@ -9,7 +9,7 @@ class Order extends Component{
     }
 
     getOrderData=async()=>{
-        const title = "http://localhost:3001/order/" + this.orderName
+        const title = `http://localhost:3001/order/${this.orderName}`
         const orderData_ = await axios.get(title)
         this.setState({
             orderData: orderData_
@@ -22,7 +22,7 @@ class Order extends Component{
 
 
     finRecruit = async() => {
-        const NewUrl = "http://localhost:3001/order/end/"+this.orderName
+        const NewUrl = `http://localhost:3001/order/end/${this.orderName}`
         await axios.post(NewUrl)
         window.location.href = "/"
     }
@@ -85,7 +85,7 @@ class Order extends Component{
                     >최소 주문 금액: {minPrice}원 <br/>
                         모인 금액: {totalPrice}원 <br/>
                         <Button
-                            onClick={window.location.href = "/AddPerson"+this.orderName}
+                            onClick={window.location.href = `/AddPerson/${this.orderName}`}
                             >
                             Join Party
                         </Button>

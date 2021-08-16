@@ -45,10 +45,9 @@ class MakeOrder extends Component{
                 totalprice: this.state.totalprice,
                 product: this.state.product,
                 price: this.state.price
-            }
+            },
             )
-        const loca = "/order" + this.state.name
-        window.location.href = loca
+        window.location.href = `/order/${this.state.name}`
 
     }
 

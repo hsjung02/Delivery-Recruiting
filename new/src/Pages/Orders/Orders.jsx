@@ -22,9 +22,6 @@ class Orders extends Component {
     this.getData()
   }
 
-  makeLinkUrl=(title)=>{
-    return "http://localhost:3001/Order/"+title
-  }
 
   render(){
     const myList = this.state.OrderList
@@ -32,7 +29,7 @@ class Orders extends Component {
         <div className="order">
           {myList.map(item=>{
             return(
-                <a href={this.makeLinkUrl(item)}>
+                <a href={`http://localhost:3001/Order/${item}`}>
                   <Message>
                     주문명 : {item}<br/>
                   </Message>
