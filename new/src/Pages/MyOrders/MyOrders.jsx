@@ -1,6 +1,6 @@
 import './myorders.css'
 import {Component} from "react";
-import {Message} from "semantic-ui-react";
+import {Divider, Message} from "semantic-ui-react";
 import axios from "axios";
 
 class MyOrders extends Component {
@@ -29,9 +29,11 @@ class MyOrders extends Component {
     const List = this.state.orderList
     return(
         <div className="my-order">
+          <Divider/>
           <p>
-            내가 만든 주문
+            내가 만든 주문<br/>
           </p>
+          <Divider/>
           {myList.map(item=>{
             return(
                 <Message>
@@ -40,9 +42,11 @@ class MyOrders extends Component {
                 </Message>
             )
           })}
+          <Divider/>
           <p>
-            내가 참여한 주문
+            내가 참여한 주문<br/>
           </p>
+          <Divider/>
           {List.map(item=>{
             return(
                 <Message>
@@ -51,6 +55,7 @@ class MyOrders extends Component {
                 </Message>
             )
           })}
+          <Divider/>
         </div>
     );
   }
