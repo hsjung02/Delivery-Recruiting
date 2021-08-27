@@ -4,10 +4,15 @@ import useLoginInput from "../../hooks/useLoginInput";
 import axios from "axios";
 import { useContext } from "react";
 import UserContext from "../../UserContext/UserContext";
+import {useCookies} from "react-cookie";
 
 function Login(props) {
     const [telRef, passwordRef, , checkValidity] = useLoginInput();
     const userContext = useContext(UserContext);
+    const [cookies, setCookie] = useCookies(['tel'])
+
+    let now = new Date;
+    let after10m = new Date;
 
     const submitHandler = async e => {
         if (!checkValidity(e)) return;
@@ -30,7 +35,9 @@ function Login(props) {
 
             if (response.data.loginsuccess) {
                 alert("로그인에 성공하셨습니다!");
+                after10m.setMinutes(now.getMinutes()+10);
                 userContext.logIn(tel);
+                setCookie('tel',tel,{path:'/', expires: after10m})
             } else {
                 alert("전화번호와 비밀번호가 맞지 않습니다. 다시 확인하세요.");
             }

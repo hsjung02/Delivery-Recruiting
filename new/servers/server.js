@@ -10,7 +10,10 @@ const cookieParser = require('cookie-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 //==============모듈 export 끝========//
 
 //=============라우터 export==========//

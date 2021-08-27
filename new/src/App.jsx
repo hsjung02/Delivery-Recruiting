@@ -1,6 +1,3 @@
-
-
-
 import Container from "./Container/Container";
 import "./App.css";
 import Home from "./Pages/Home/Home";
@@ -11,9 +8,11 @@ import Join from "./Pages/Join/Join";
 import MakeOrder from "./Pages/MakeOrder/MakeOrder";
 import { useContext } from "react";
 import UserContext from "./UserContext/UserContext";
+import {useCookies} from "react-cookie";
 
 function App() {
     const userContext = useContext(UserContext);
+    const [cookies, setCookie, removeCookie] = useCookies(['tel'])
     const page = userContext.page;
     return (
         <Container changePage={userContext.changePage}>
@@ -28,3 +27,5 @@ function App() {
 }
 
 export default App;
+
+

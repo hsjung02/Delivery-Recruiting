@@ -4,12 +4,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "semantic-ui-css/semantic.min.css";
 import UserProvider from "./UserContext/UserProvider";
+import {CookiesProvider} from "react-cookie";
 
 ReactDOM.render(
     <React.StrictMode>
-        <UserProvider>
-            <App />
-        </UserProvider>
+        <CookiesProvider>
+            <UserProvider>
+                <App />
+            </UserProvider>
+        </CookiesProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );

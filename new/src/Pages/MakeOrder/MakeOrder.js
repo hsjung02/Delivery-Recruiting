@@ -46,10 +46,12 @@ class MakeOrder extends Component{
                 product: this.state.product,
                 price: this.state.price
             },
+            {withCredentials: true}
             )
         window.location.href = `/order/${this.state.name}`
 
     }
+
 
     render(){
         return(

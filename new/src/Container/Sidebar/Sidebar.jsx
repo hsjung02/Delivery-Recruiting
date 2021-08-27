@@ -3,9 +3,11 @@ import React from "react";
 import SidebarMenuButton from "../../UI/SidebarMenuButton/SidebarMenuButton";
 import { useContext } from "react";
 import UserContext from "../../UserContext/UserContext";
+import {useCookies} from "react-cookie";
 
 const Sidebar = React.forwardRef((props, ref) => {
   const userContext = useContext(UserContext);
+  const [cookies, removeCookie] = useCookies(['tel'])
 
   const openLoginPage = event => {
     userContext.changePage("Login");
@@ -33,6 +35,7 @@ const Sidebar = React.forwardRef((props, ref) => {
     if (answer) {
       alert("로그아웃 되었습니다.");
       userContext.logOut();
+      removeCookie('tel');
     }
   };
 

@@ -2,19 +2,22 @@ import './orders.css'
 import {Component} from "react";
 import {Message} from "semantic-ui-react";
 import axios from "axios";
+import Order from "../Order/Order";
 
 class Orders extends Component {
   constructor(props) {
     super(props);
     this.state={
-      OrderList: []
+      selected: false,
+      OrderList: [],
+      title: ""
     }
   }
 
   getData=async()=>{
-    const res = await axios.get("http://localhost:3001/")
+    const res = await axios.get("http://localhost:3001/", {withCredentials: true})
     this.setState({
-      OrderList: res.data.OrderList
+      OrderList: res.data.order
     })
   }
 
@@ -22,22 +25,35 @@ class Orders extends Component {
     this.getData()
   }
 
+  setTitle=(title)=>{
+    this.setState({
+      title: title,
+      selected: true
+    })
+  }
+
 
   render(){
     const myList = this.state.OrderList
-    return(
-        <div className="order">
-          {myList.map(item=>{
-            return(
-                <a href={`http://localhost:3001/Order/${item}`}>
-                  <Message>
+    if(this.state.selected===false){
+      return(
+          <div className="order">
+            {myList.map(item=>{
+              return(
+                  <Message onClick={this.setTitle(item)}>
                     주문명 : {item}<br/>
                   </Message>
-                </a>
-            )
-          })}
-        </div>
-    );
+              )
+            })}
+          </div>
+      );
+    }
+    else if(this.state.selected===true){
+      return(
+          <Order title={this.state.title}/>
+      )
+    }
+
   }
 }
 

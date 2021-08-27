@@ -5,12 +5,11 @@ import axios from "axios";
 class Order extends Component{
     constructor(props) {
         super(props);
-        this.orderName = this.props.match.name
+        this.orderName = this.props.title
     }
 
     getOrderData=async()=>{
-        const title = `http://localhost:3001/order/${this.orderName}`
-        const orderData_ = await axios.get(title)
+        const orderData_ = await axios.get(`http://localhost:3001/order/${this.orderName}`)
         this.setState({
             orderData: orderData_
         })
@@ -22,8 +21,7 @@ class Order extends Component{
 
 
     finRecruit = async() => {
-        const NewUrl = `http://localhost:3001/order/end/${this.orderName}`
-        await axios.post(NewUrl)
+        await axios.post(`http://localhost:3001/order/end/${this.orderName}`)
         window.location.href = "/"
     }
 
