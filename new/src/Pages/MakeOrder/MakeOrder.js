@@ -10,7 +10,7 @@ class MakeOrder extends Component{
             name: "",
             totalprice: "",
             product: "",
-            price: ""
+            price: "",
         }
     }
 
@@ -41,7 +41,7 @@ class MakeOrder extends Component{
     sendData=async()=>{
         await axios.post("http://localhost:3001/neworder",
             {
-                name: this.state.name,
+                name: this.state.name+'_'+this.DateToString(),
                 totalprice: this.state.totalprice,
                 product: this.state.product,
                 price: this.state.price
@@ -52,6 +52,19 @@ class MakeOrder extends Component{
 
     }
 
+    makeTwo=(num)=>{
+        if(num<10){
+            return '0'+ num
+        }
+        else{
+            return num
+        }
+    }
+
+    DateToString=()=>{
+        const date = new Date;
+        return date.getFullYear() + this.makeTwo(date.getMonth()+1) + this.makeTwo(date.getDay()) + this.makeTwo(date.getHours()) + this.makeTwo(date.getMinutes()) + this.makeTwo(date.getSeconds())
+    }
 
     render(){
         return(
