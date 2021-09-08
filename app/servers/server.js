@@ -43,7 +43,7 @@ app.get('/',(req,res)=>{
 
     new Promise((resolve,reject)=>{
         db.query(`SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA='delivery' AND TABLE_NAME!='users'`,(err,result)=>{
-            if(err)throw err;
+            if(err)res.sendStatus(404);
             for(var key in result){
                 order.push(result[key].TABLE_NAME);
             }

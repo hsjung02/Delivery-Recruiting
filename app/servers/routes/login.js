@@ -9,7 +9,7 @@ module.exports = router;
 //     var loginsuccess=false;
 //     new Promise((resolve, reject)=>{
 //         db.query(`SELECT * FROM users`,(err,result)=>{
-//             if(err)throw err;
+//             if(err)res.sendStatus(404);
 //             for(var key in result){
 //                 if(result[key].tel==req.body.tel && result[key].pw==req.body.pw)loginsuccess=true;
 //             }
