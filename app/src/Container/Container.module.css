@@ -1,0 +1,44 @@
+.container {
+    background-color: #343434;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    border-bottom: 2px solid #fff;
+    position: relative;
+}
+
+.header-title {
+    margin: 0;
+}
+
+.contents {
+    display: flex;
+    width: 100%;
+    background-color: inherit;
+}
+
+.main-contents {
+    flex-grow: 1;
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        width: 920px;
+        margin: 0 auto;
+    }
+    .sidebar {
+        width: 30%;
+    }
+    .close-button {
+        display: none;
+    }
+}
