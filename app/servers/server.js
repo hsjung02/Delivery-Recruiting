@@ -22,8 +22,8 @@ const joinRouter = require('./routes/join.js');
 app.use('/join',joinRouter);
 const loginRouter = require('./routes/login.js');
 app.use('/login',loginRouter);
-const logoutRouter = require('./routes/logout.js');
-app.use('/logout',logoutRouter);
+//const logoutRouter = require('./routes/logout.js');
+//app.use('/logout',logoutRouter);
 const mypageRouter = require('./routes/mypage.js');
 app.use('/mypage',mypageRouter);
 const neworderRouter = require('./routes/neworder.js');
@@ -43,7 +43,7 @@ app.get('/',(req,res)=>{
 
     new Promise((resolve,reject)=>{
         db.query(`SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA='delivery' AND TABLE_NAME!='users'`,(err,result)=>{
-            if(err)throw err;
+            if(err)res.sendStatus(404);
             for(var key in result){
                 order.push(result[key].TABLE_NAME);
             }

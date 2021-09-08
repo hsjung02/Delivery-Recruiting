@@ -7,6 +7,6 @@
 //     try {
 //         res.clearCookie('tel');   //쿠키 초기화
 //     } catch(err){
-//         throw err;
+//         res.sendStatus(404);
 //     }
 // })
