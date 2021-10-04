@@ -6,25 +6,32 @@ const router = express.Router();
 module.exports = router;
 
 router.get('/:ordername',(req,res)=>{ // 주문명, 채워진 금액, 최소주문금액, 주문 생성자인지 아닌지
-    var totalprice=0;
-    var min_price=0;
-    var host=False; //True이면 호스트, False이면 게스트
+    var totalprice = 0;
+    var min_price = 0;
+    var tags = [];
+    var host = False; //True이면 호스트, False이면 게스트
     
-    var ordername=req.params.ordername;
+    var ordername = req.params.ordername;
     new Promise((resolve, reject)=>{
         db.query(`SELECT * FROM ${ordername}`,(err,result)=>{
             if(err)res.sendStatus(404);
-            min_price=result[0].price;
+            min_price = result[0].price;
             for(var key in result){ // 현재 채워진 금액
-                if(key!=0)totalprice+=parseInt(result[key].price);
+                if(key != 0)totalprice += parseInt(result[key].price);
             }
             if(result[0].tel == req.cookies.tel){ // 주문 생성자이면 주문 마감 버튼 추가
-                host=True;
+                host = True;
             }
             resolve();
         })
     }).then(()=>{
-            res.json({totalprice:totalprice, min_price:min_price,host:host});
+        new Promise((resolve,reject)=>{
+            db.query(`SELECT tag FROM tag_order WHERE ordername=${req.params.ordername}`,(err,result)=>{
+                if(err)res.sendStatus(404);
+                tags = result;
+            })
+        })
+            res.json({totalprice:totalprice, min_price:min_price,tags:tags,host:host});
         })
 })
 
