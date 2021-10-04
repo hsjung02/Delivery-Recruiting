@@ -11,6 +11,8 @@ class MakeOrder extends Component{
             totalprice: "",
             product: "",
             price: "",
+            tag: "",
+            tags: []
         }
     }
 
@@ -38,13 +40,29 @@ class MakeOrder extends Component{
         })
     }
 
+    updateTag=(e)=>{
+        this.setState({
+            tag:e.target.value
+        })
+    }
+
+    addTags=(e)=>{
+        this.setState({
+            tags: this.state.tags.concat(this.state.tag)
+        })
+        this.setState({
+            tag:""
+        })
+    }
+
     sendData=async()=>{
         await axios.post("http://localhost:3001/neworder",
             {
                 name: this.state.name+'_'+this.DateToString(),
                 totalprice: this.state.totalprice,
                 product: this.state.product,
-                price: this.state.price
+                price: this.state.price,
+                tags: this.state.tags
             },
             {withCredentials: true}
             )
@@ -67,6 +85,11 @@ class MakeOrder extends Component{
     }
 
     render(){
+        var tag_query = "";
+        for(var tag of this.state.tags){
+            tag_query+=tag;
+            tag_query+= ',';
+        }
         return(
             <Form style={{
                 width: '70%',
@@ -99,6 +122,16 @@ class MakeOrder extends Component{
                            value={this.state.price}
                            onChange={this.updatePrice}
                     />
+                </Form.Field>
+                <Form.Field>
+                    <label style={{color: 'white'}}>태그</label>
+                    <input placeholder='추가하고 싶은 태그를 입력하세요'
+                           value={this.state.tag}
+                           onChange={this.updateTag}
+                    />
+                    <label style={{color: 'white'}}>현재 태그: {tag_query}</label>
+                    <Button onClick={this.addTags}
+                    >태그 추가</Button>
                 </Form.Field>
                 <Button
                     onClick={this.sendData}

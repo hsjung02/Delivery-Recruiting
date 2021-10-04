@@ -42,7 +42,7 @@ app.get('/',(req,res)=>{
     var order = [];
 
     new Promise((resolve,reject)=>{
-        db.query(`SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA='delivery' AND TABLE_NAME!='users'`,(err,result)=>{
+        db.query(`SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA='delivery' AND TABLE_NAME!='users' AND TABLE_NAME!='tag_list' AND TABLE_NAME!='tag_order'`,(err,result)=>{
             if(err)res.sendStatus(404);
             for(var key in result){
                 order.push(result[key].TABLE_NAME);
