@@ -7,7 +7,7 @@ import {useCookies} from "react-cookie";
 
 const Sidebar = React.forwardRef((props, ref) => {
   const userContext = useContext(UserContext);
-  const [cookies, removeCookie] = useCookies(['tel'])
+  const [cookies, updateCookie, removeCookie] = useCookies(['tel'])
 
   const openLoginPage = event => {
     userContext.changePage("Login");
@@ -18,14 +18,17 @@ const Sidebar = React.forwardRef((props, ref) => {
   };
 
   const openOrdersPage = event => {
+    cookies.tel && userContext.logIn(cookies.tel)
     userContext.changePage(userContext.loggedIn ? "Orders" : "Login");
   };
 
   const openMyOrdersPage = event => {
+    cookies.tel && userContext.logIn(cookies.tel)
     userContext.changePage(userContext.loggedIn ? "MyOrders" : "Login");
   };
 
   const openMakeOrderPage = event => {
+    cookies.tel && userContext.logIn(cookies.tel)
     userContext.changePage(userContext.loggedIn ? "MakeOrder" : "Login");
   };
 

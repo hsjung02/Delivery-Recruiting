@@ -66,13 +66,14 @@ class MakeOrder extends Component{
             },
             {withCredentials: true}
             )
+        console.log(this.DateToString)
         window.location.href = `/order/${this.state.name}`
 
     }
 
     makeTwo=(num)=>{
         if(num<10){
-            return '0'+ num
+            return '0'+ num.toString()
         }
         else{
             return num
@@ -81,7 +82,7 @@ class MakeOrder extends Component{
 
     DateToString=()=>{
         const date = new Date;
-        return date.getFullYear() + this.makeTwo(date.getMonth()+1) + this.makeTwo(date.getDay()) + this.makeTwo(date.getHours()) + this.makeTwo(date.getMinutes()) + this.makeTwo(date.getSeconds())
+        return date.getFullYear().toString() + this.makeTwo(date.getMonth()+1).toString() + this.makeTwo(date.getDay()).toString() + this.makeTwo(date.getHours()).toString() + this.makeTwo(date.getMinutes()).toString() + this.makeTwo(date.getSeconds().toString())
     }
 
     render(){

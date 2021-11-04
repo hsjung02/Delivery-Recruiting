@@ -9,10 +9,13 @@ class Order extends Component{
     }
 
     getOrderData=async()=>{
-        const orderData_ = await axios.get(`http://localhost:3001/order/${this.orderName}`)
+        const orderData_ = await axios.get(`http://localhost:3001/order/${this.orderName}`,{withCredentials: true})
+        console.log("???")
         this.setState({
-            orderData: orderData_
+            orderData: orderData_,
+            isLoaded : true
         })
+        console.log(this.state.orderData)
     }
 
     componentDidMount() {

@@ -40,7 +40,7 @@ class Orders extends Component {
           <div className="order">
             {myList.map(item=>{
               return(
-                  <Message onClick={this.setTitle(item)}>
+                  <Message onClick={()=>this.setTitle(item)}>
                     주문명 : {item}<br/>
                   </Message>
               )
